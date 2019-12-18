@@ -1,0 +1,121 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <meta http-equiv="X-UA-Compatible" content="ie=edge">
+    <meta name="viewport" content="width=device-width, initial-scale=1, maximum-scale=1, user-scalable=no">
+    <meta name="viewport" content="user-scalable=no, initial-scale=1, maximum-scale=1, minimum-scale=1, width=device-width, height=device-height, target-densitydpi=device-dpi" />
+    <title>Game engine</title>
+    <link rel="stylesheet" href="css/reset.css">
+    <link rel="stylesheet" href="css/style.css">
+</head>
+<body>
+    
+    <div id="stage"></div>
+    <script src="js/Prop.js"></script>
+    <script src="js/Lava.js"></script>
+    <script src="js/Item.js"></script>
+    <script src="js/Rock.js"></script>
+    <script src="js/Enemy.js"></script>
+    <script src="js/Level.js"></script>
+    <script src="js/Player.js"></script>
+    <script src="js/Vector.js"></script>
+    <script src="js/Canvas.js"></script>
+    <script src="js/State.js"></script>
+    <script src="js/map.js"></script>
+    <script src="js/main.js"></script>
+    <center>
+        <style>
+          body {
+            background-color: transparent;
+          }          
+          * {
+            padding: 0;
+            margin: 0;
+          }          
+          canvas {
+            background: transparent;
+            display: block;
+            margin: 100px;
+          }          
+          #startBtn {
+            border: none;
+            background: none;
+            position: center;
+            top: 0;
+            left: 0;
+          }          
+          #container {
+            display: inline-block;
+            position: relative;
+          }          
+          #myCanvas {
+            position: relative;
+          }
+          body {
+          }
+        </style>
+    </head>
+    
+    <body>
+    <center>
+      <div id="container">
+        <button type="button" id="startBtn" onclick="draw()"><img src='https://hubcityreview.files.wordpress.com/2015/11/18231wide.jpg' >
+        </button>
+        <canvas id="myCanvas" width="600" height="550"></canvas>
+      </div>
+    
+    
+      <script>
+        var canvas = document.getElementById("myCanvas");
+        var ctx = canvas.getContext("2d");
+        var startBtn = document.getElementById('startBtn');
+    
+        function draw() {
+          ctx.clearRect(0, 0, canvas.width, canvas.height);
+          startBtn.style.display = 'none';
+    
+          frameCount += 1;
+          if (frameCount === FRAME_COUNT_NEW_LINE) {
+            frameCount = 0;
+          }
+    
+     
+    
+          if (x + dx > canvas.width - ballRadius || x + dx < ballRadius) {
+            dx = -dx;
+          }
+          if (y + dy < ballRadius) {
+            dy = -dy;
+          } else if (y + dy > canvas.height - ballRadius) {
+            if (x > paddleX && x < paddleX + paddleWidth) {
+              dy = -dy;
+            } else {
+              lives--;
+              if (!lives) {
+    
+                document.location.reload();
+              } else {
+                x = canvas.width - Math.floor(Math.random() * 600);
+                y = canvas.height - 30;
+                dx = 5;
+                dy = -4;
+                paddleX = (canvas.width - paddleWidth) / 2;
+              }
+            }
+          }
+    
+        
+          x += dx;
+          y += dy;
+          requestAnimationFrame(draw);
+        }
+        drawCanvas();
+        drawPlay();
+      </script>
+    
+    </body>
+    
+    </html>
+</html>
