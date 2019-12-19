@@ -179,9 +179,10 @@ let sources = {
         offsetX: 352,
         offsetY: 320
     },
-    map1: {src: 'img/maps/jul1.png'},
+    map1: {src: 'img/maps/jul4.png'},
+    map1: {src: 'img/maps/jul3.png'},
     map2: {src: 'img/maps/jul2.png'},
-    map3: {src: 'img/maps/jul3.png'},
+    map3: {src: 'img/maps/jul1.png'},
     bild1: {src:'img/maps/bild1.png'},
 };
 
